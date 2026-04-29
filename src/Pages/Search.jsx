@@ -1,12 +1,35 @@
-// src/Pages/Login.jsx
+// Page for searching superheroes
+import React, { useState } from "react";
+import { searchHero } from "../api/superhero";
+import HeroCard from "../components/HeroCard";
 
-import React from "react";
+export default function Search() {
+  const [query, setQuery] = useState("");
+  const [heroes, setHeroes] = useState([]);
 
-const Search = () => (
-  <div>
-    <h1>Search</h1>
-    <p>This is the search for superhero page.</p>
-  </div>
-);
+  async function handleSearch() {
+    const results = await searchHero(query);
+    setHeroes(results);
+  }
 
-export default Login;
+  return (
+    <div className="page">
+      <h1>Search Superheroes</h1>
+
+      <div className="searchBox">
+        <input
+          placeholder="Enter hero name..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+
+      <div className="grid">
+        {heroes.map((hero) => (
+          <HeroCard key={hero.id} hero={hero} />
+        ))}
+      </div>
+    </div>
+  );
+}

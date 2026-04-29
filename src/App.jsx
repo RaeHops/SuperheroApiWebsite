@@ -1,46 +1,30 @@
-// src/App.jsx
-
+// Main app with routing between pages
 import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Compare from "./pages/Compare";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Home from "./pages/Home";
 import Search from "./pages/Search";
+import Compare from "./pages/Compare";
 
-const Button = () => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/");
-  };
-
+export default function App() {
   return (
-    <button
-      onClick={handleClick}
-      style={{
-        padding: "10px 20px",
-        fontSize: "16px",
-        cursor: "pointer",
-        outline: "none",
-        border: "2px solid green",
-        borderRadius: "4px",
-        marginTop: "16px",
-        marginBottom: "16px",
-      }}
-    >
-      Go to Home
-    </button>
+    <Router>
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <h2>Superhero Search</h2>
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="/search">Search</Link>
+          <Link to="/compare">Compare</Link>
+        </div>
+      </nav>
+
+      {/* Pages */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/compare" element={<Compare />} />
+      </Routes>
+    </Router>
   );
-};
-
-const App = () => (
-  <div style={{ textAlign: "center" }}>
-    <Header />
-    <Button />
-    <Routes>
-      <Route path="/" element={<div>Welcome to the Home page</div>} />
-      <Route path="/compare" element={<Compare />} />
-      <Route path="/search" element={<Search />} />
-    </Routes>
-  </div>
-);
-
-export default App;
+}
