@@ -1,4 +1,4 @@
-// Home page (simple intro page)
+// Home page
 import React from "react";
 
 export default function Home() {

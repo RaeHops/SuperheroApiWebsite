@@ -1,4 +1,4 @@
-// Page for searching superheroes
+// search page
 import React, { useState } from "react";
 import { searchHero } from "../api/superhero";
 import HeroCard from "../components/HeroCard";

@@ -1,4 +1,4 @@
-// Compare two superheroes
+// Compare page
 import React, { useState } from "react";
 import { searchHero } from "../api/superhero";
 
